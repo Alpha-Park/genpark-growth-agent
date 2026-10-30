@@ -1,0 +1,10 @@
+{
+  "name": "genpark-growth-agent",
+  "version": "1.0.0",
+  "description": "GenPark Growth Agent - Viral K-factor branching process simulator, LTV/CAC cohort retention decay model, and Wald's SPRT A/B test early-stopping evaluator with zero dependencies.",
+  "tools": [
+    "simulate_viral_k_factor_branching",
+    "model_ltv_cac_cohort_decay",
+    "evaluate_sprt_ab_test_early_stopping"
+  ]
+}
