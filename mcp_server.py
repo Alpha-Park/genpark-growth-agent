@@ -55,8 +55,7 @@ def evaluate_sprt_ab_test_early_stopping(
     return json.dumps(res, indent=2)
 
 def main():
-    print("Testing Growth Agent:")
-    print(simulate_viral_k_factor_branching(1000, 3.0, 0.4))
+    mcp.run(transport="stdio")
 
 if __name__ == "__main__":
     main()
