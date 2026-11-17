@@ -3,10 +3,10 @@
 ![Tests](https://img.shields.io/badge/tests-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Python](https://img.shields.io/badge/python-3.10%2B-blue)
-![Dependencies](https://img.shields.io/badge/dependencies-zero-success)
+![MCP SDK](https://img.shields.io/badge/MCP_SDK-required-blue)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 
-GenPark Growth Agent is a zero-dependency quantitative growth engineering and experimentation engine implementing viral branching process epidemic modeling ($K$-factor), SaaS cohort retention and CAC payback decay analysis, and Wald's Sequential Probability Ratio Test (SPRT) for continuous A/B test early stopping.
+GenPark Growth Agent has a standard-library core for quantitative growth engineering and experimentation engine implementing viral branching process epidemic modeling ($K$-factor), SaaS cohort retention and CAC payback decay analysis, and Wald's Sequential Probability Ratio Test (SPRT) for continuous A/B test early stopping.
 
 ```mermaid
 flowchart TD
@@ -16,6 +16,32 @@ flowchart TD
     E --> F[LTV/CAC Ratio & Payback Period]
     G[Continuous Conversion Stream] --> H[Wald SPRT Log-Likelihood Ratio]
     H --> I[Early Stopping Boundary: Accept/Reject/Continue]
+```
+
+## MCP runtime requirements
+
+Use Python 3.10 or newer. The core `client.py` uses only the standard library; `mcp_server.py` requires the official `mcp` SDK (`mcp>=1.0.0,<2`). From this repository's checkout, create an isolated environment and install its requirements:
+
+```bash
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+```
+
+On Windows, use `.venv\Scripts\python.exe` instead. You may use an existing Python environment with the requirements installed. Configure your MCP client with that interpreter's absolute path and the absolute path to `mcp_server.py`. The client launches a local STDIO process; the GitHub repository URL is not a remote MCP endpoint.
+
+Example client configuration (replace the placeholder paths):
+
+```json
+{
+  "mcpServers": {
+    "genpark-growth-agent": {
+      "command": "/absolute/path/to/genpark-growth-agent/.venv/bin/python",
+      "args": [
+        "/absolute/path/to/genpark-growth-agent/mcp_server.py"
+      ]
+    }
+  }
+}
 ```
 
 ## Features
